@@ -51,7 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (currentRound >= rounds) {
         para.innerHTML += `<h3>Final Score:</h3> <p>You: ${humanScore}<br>Computer: ${computerScore}`;
-        buttons.innerHTML = "<button> Play Again? </button>";
+        buttons.innerHTML = `<button id="reset"> Play Again? </button>`;
+        document
+          .querySelector("#reset")
+          .addEventListener("click", () => location.reload());
       }
     });
   }
