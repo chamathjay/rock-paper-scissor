@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const choiceList = ["rock", "paper", "scissors"];
   const para = document.querySelector("#para1");
   const buttons = document.querySelector(".buttons-container");
+  const resetContainer = document.querySelector(".reset-container");
 
   let humanScore = 0;
   let computerScore = 0;
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let menu = document.querySelector(".buttons-container");
 
     menu.addEventListener("click", (event) => {
-      let target = event.target;
+      let target = event.target.closest("button");
       if (target.matches("button") && currentRound < rounds) {
         const humanChoice = target.id.split("-")[0]; // Extract "rock", "paper", or "scissors"
         const result = playRound(humanChoice);
@@ -51,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (currentRound >= rounds) {
         para.innerHTML += `<h3>Final Score:</h3> <p>You: ${humanScore}<br>Computer: ${computerScore}`;
-        buttons.innerHTML = `<button id="reset"> Play Again? </button>`;
+        buttons.innerHTML = "";
+        resetContainer.innerHTML = `<button id="reset"> Play Again? </button>`;
         document
           .querySelector("#reset")
           .addEventListener("click", () => location.reload());
